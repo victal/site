@@ -12,10 +12,10 @@ FTP_HOST=localhost
 FTP_USER=anonymous
 FTP_TARGET_DIR=/
 
-SSH_HOST=localhost
+SSH_HOST=victal.eti.br
 SSH_PORT=22
-SSH_USER=root
-SSH_TARGET_DIR=/var/www
+SSH_USER=ubuntu
+SSH_TARGET_DIR=/var/www/html
 
 S3_BUCKET=my_s3_bucket
 
@@ -36,6 +36,8 @@ RELATIVE ?= 0
 ifeq ($(RELATIVE), 1)
 	PELICANOPTS += --relative-urls
 endif
+
+default: publish github ssh_upload
 
 help:
 	@echo 'Makefile for a pelican Web site                                           '
