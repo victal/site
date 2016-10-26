@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Free Lunch - misc</title>
+        <link rel="stylesheet" href="https://victal.eti.br/theme/css/main.css" />
+        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Free Lunch Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://victal.eti.br/">Free Lunch </a></h1>
+                <nav><ul>
+                    <li><a href="https://victal.eti.br/category/java.html">java</a></li>
+                    <li class="active"><a href="https://victal.eti.br/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://victal.eti.br/running-dymolabel-7x-without-a-dymo-printer.html">Running DymoLabel 7.x without a Dymo Printer</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2016-08-29T13:05:03-03:00">
+                Published: Seg 29 agosto 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/misc.html">misc</a>.</p>
+<p>tags: <a href="https://victal.eti.br/tag/reblog.html">reblog</a> </p>
+</footer><!-- /.post-info --><p>Updated from a solution found <a href="http://windycitytech.blogspot.com.br/2013/06/running-dymo-label-without-dymo-printer.html">here</a>. Thanks to the original author.</p>
+<p>One of the projects I was working on required us to update an application that created ID cards using Dymo printers in order to support other brands of printers. </p>
+<p>However, Dymo labels are created and printed using a XML file with a custom schema, and I couldn't find another program that could open/import it to convert to a saner format.</p>
+<p>To add insult to injury, trying to run DymoLabel (the application Dymo provides to design/create labels) or an application that uses the Dymo API without a printer installed fails with an error like <em>"This program requires a Dymo Printer. "</em></p>
+<p>Googling around (which saves lives) took me to <a href="http://windycitytech.blogspot.com.br/2013/06/running-dymo-label-without-dymo-printer.html">this 2013 post</a> which provides a workaround:</p>
+<ol>
+<li>Go to the <a href="https://web.archive.org/web/20120216022217/http://global.dymo.com/enGB/Troubleshooting/LabelWriter_320.html">Dymo Support</a> and look for the first error at Troubleshoot &gt; Error Messages. Download and run the provided ASINSTALL.EXE. The URL in the original post does not work anymore, though, so we're relying on the <a href="https://archive.org/web/">Internet Archive WayBack Machine</a> snapshot of it. You can download ASINSTALL.EXE directly from <a href="/assets/files/asinstall.exe">here</a> as well.</li>
+<li>Add a fake printer manually through Windows' Devices and Printers, as shown in the following snapshots.</li>
+</ol>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="http://github.com/victal">Github</a></li>
+                            <li><a href="http://twitter.com/g_victal">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

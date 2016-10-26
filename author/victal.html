@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Free Lunch - victal</title>
+        <link rel="stylesheet" href="https://victal.eti.br/theme/css/main.css" />
+        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Free Lunch Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://victal.eti.br/">Free Lunch </a></h1>
+                <nav><ul>
+                    <li><a href="https://victal.eti.br/category/java.html">java</a></li>
+                    <li><a href="https://victal.eti.br/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="https://victal.eti.br/websphere-7-on-ubuntu-linux.html">Websphere 7 on Ubuntu Linux</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2016-08-29T13:47:50-03:00">
+                Published: Seg 29 agosto 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/java.html">java</a>.</p>
+<p>tags: <a href="https://victal.eti.br/tag/reblog.html">reblog</a> </p>
+</footer><!-- /.post-info --><p>Sharing from <a href="http://www.cnblogs.com/BruceLeey/archive/2010/09/18/1830419.html">this post</a>, where I found the solution to a stupid problem:</p>
+<p>Recently I had to go through installing IBM Websphere 7.0 on a Ubuntu VM for development purposes. 
+Installing Websphere (and other IBM server products) is already a pain in the ass by itself, but it turned out even worse as the process of creating a profile in order to start a server was broken with no obvious solution.</p>
+<p>The output for the manageprofiles.sh script was simply:</p>
+<div class="highlight"><pre><span></span><span class="n">INSTCONFFAILED</span><span class="o">:</span> <span class="n">The</span> <span class="n">profile</span> <span class="n">could</span> <span class="n">not</span> <span class="n">be</span> <span class="n">created</span><span class="o">.</span>  <span class="n">For</span> <span class="n">more</span> <span class="n">information</span><span class="o">,</span> <span class="n">consult</span>
+<span class="n">the</span> <span class="sr">/opt/IBM/WebSphere/AppServer/logs/manageprofiles/</span><span class="n">AppSrv01_create</span><span class="o">.</span><span class="na">log</span> <span class="n">file</span>
+</pre></div>
+
+
+<p>Pouring through the log file (XML by default, really?) one could find the line</p>
+<div class="highlight"><pre><span></span><span class="o">/</span><span class="s s-Atom">opt</span><span class="o">/</span><span class="nv">IBM</span><span class="o">/</span><span class="nv">WebSphere</span><span class="o">/</span><span class="nv">AppServer</span><span class="o">/</span><span class="s s-Atom">profileTemplates</span><span class="o">/</span><span class="s s-Atom">default</span><span class="o">/</span><span class="s s-Atom">action</span><span class="o">/</span><span class="s s-Atom">generateKeysForSingleProfile</span><span class="p">.</span><span class="nn">ant</span><span class="p">:</span><span class="mi">25</span><span class="s s-Atom">:</span>
+<span class="s s-Atom">wsadmin</span> <span class="s s-Atom">task</span> <span class="s s-Atom">failed</span> <span class="s s-Atom">with</span> <span class="s s-Atom">return</span> <span class="nf">code</span> <span class="o">:-</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>However it turns out (as per the link provided in the beggining of the post) that the issue lies in the shell script that calls the ant script. It seems that the script expects to be run with sh or bash, and breaks since in Ubuntu sh is usually symlinked to dash.</p>
+<p>The rather simple solutions to the problem:</p>
+<ol>
+<li>Link /bin/sh to bash</li>
+</ol>
+<div class="highlight"><pre><span></span>sudo unlink /bin/sh
+sudo ln -s /bin/bash /bin/sh
+</pre></div>
+
+
+<ol>
+<li>Reconfigure sh via dpkg</li>
+</ol>
+<div class="highlight"><pre><span></span>sudo dpkg-reconfigure dash
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://victal.eti.br/running-dymolabel-7x-without-a-dymo-printer.html" rel="bookmark"
+                           title="Permalink to Running DymoLabel 7.x without a Dymo Printer">Running DymoLabel 7.x without a Dymo Printer</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-08-29T13:05:03-03:00">
+                Published: Seg 29 agosto 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/misc.html">misc</a>.</p>
+<p>tags: <a href="https://victal.eti.br/tag/reblog.html">reblog</a> </p>
+</footer><!-- /.post-info -->                <p>Updated from a solution found <a href="http://windycitytech.blogspot.com.br/2013/06/running-dymo-label-without-dymo-printer.html">here</a>. Thanks to the original author.</p>
+<p>One of the projects I was working on required us to update an application that created ID cards using Dymo printers in order to support other brands of printers. </p>
+<p>However, Dymo labels are created and printed using a XML ...</p>
+                <a class="readmore" href="https://victal.eti.br/running-dymolabel-7x-without-a-dymo-printer.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://victal.eti.br/deploying-springboot-applications-on-jboss-7.html" rel="bookmark"
+                           title="Permalink to Deploying Springboot applications on Jboss 7">Deploying Springboot applications on Jboss 7</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2016-03-01T00:00:00-03:00">
+                Published: Ter 01 março 2016
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/java.html">java</a>.</p>
+
+</footer><!-- /.post-info -->                <p>Due to client, budget or technology constraints, sometimes we see ourselves having to use older, even obsolete versions of a given software/technology/language. The most recent here was having to use JBoss AS 7 to deploy some Java applications including one developed using <a href="http://projects.spring.io/spring-boot/">Spring Boot</a>. </p>
+<p>The process to turn ...</p>
+                <a class="readmore" href="https://victal.eti.br/deploying-springboot-applications-on-jboss-7.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="http://github.com/victal">Github</a></li>
+                            <li><a href="http://twitter.com/g_victal">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
