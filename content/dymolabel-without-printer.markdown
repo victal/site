@@ -17,7 +17,7 @@ To add insult to injury, trying to run DymoLabel (the application Dymo provides 
 Googling around (which saves lives) took me to [this 2013 post][original-post] which provides a workaround:
 
 1. Go to the [Dymo Support][dymo-wayback-machine] and look for the first error at Troubleshoot > Error Messages. Download and run the provided ASINSTALL.EXE. The URL in the original post does not work anymore, though, so we're relying on the [Internet Archive WayBack Machine][wayback-machine] snapshot of it. You can download ASINSTALL.EXE directly from [here][asinstall.exe] as well.
-2. Add a fake printer manually through Windows' Devices and Printers, as shown in the following snapshots.
+2. Add a fake printer manually through Windows' Devices and Printers.
 
 
 [original-post]: http://windycitytech.blogspot.com.br/2013/06/running-dymo-label-without-dymo-printer.html 
