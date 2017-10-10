@@ -89,3 +89,5 @@ ENV/
 .ropeproject
 
 output
+pelican.pid
+srv.pid
