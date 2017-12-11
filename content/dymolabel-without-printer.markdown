@@ -2,7 +2,7 @@
 layout: post
 title:  Running DymoLabel 7.x without a Dymo Printer
 date:   2016-08-29 13:05:03 -0300
-category: misc
+category: tips
 tags: reblog
 ---
 

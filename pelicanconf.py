@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'victal'
 SITENAME = u'Free Lunch'
+SITESUBTITLE = u'"There is no such thing as this site"'
 SITEURL = ''
 
 PATH = 'content'
