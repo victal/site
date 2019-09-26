@@ -31,7 +31,7 @@ SOCIAL = (('Github', 'http://github.com/victal'),
 
 DEFAULT_PAGINATION = 10
 
-STATIC_PATHS = [ 'assets' ]
+STATIC_PATHS = [ 'assets','static' ]
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
