@@ -1,14 +1,17 @@
 ---
 layout: post
-title: 5W1H (ou 4QOPC) de Noções de funcionamento de HTTPS
+title: Qustões perguntadas por ninguém sobre HTTPS
 date: 2019-09-27
-category: web
-status: draft
+category: https
 ---
 
-Este texto é o primeiro de uma série tentativa de tópicos relacionados à segurança - inicialmente no desenvolvimento e manutenção de aplicações web - que deveriam servir para consolidar os conhecimentos adquiridos na área ao longo de alguns anos de estudo e desenvolvimento de aplicações deste tipo. Com alguma sorte, deveria ser útil também para outros procurando informações em português[^1] sobre o assunto (Alguns links e referências ao longo do texto podem estar em inglês, porém).
+Este texto é o primeiro de uma série tentativa de tópicos relacionados à segurança - inicialmente no desenvolvimento e manutenção de aplicações web - a fim de consolidar os conhecimentos adquiridos na área ao longo de alguns anos de estudo e desenvolvimento de aplicações deste tipo.
 
-[5W1H](https://pt.wikipedia.org/wiki/5WH), por sua vez, é um acrônimo que representa perguntas a serem feitas para compreender um fato, história ou situação (Who?/What?/Where?/When?/Why?/How? em inglês, ou Quem?/Quê?/Quando?/Onde?/Por quê?/Como? em português). Como este texto é um tanto descritivo antes de pôr a mão na massa, parece uma boa estrutura para explicar um conteúdo básico sobre o uso de HTTPS.
+Iniciamos por algumas questões sobre HTTPS que, devido ao quão ubíquo o uso (e a recomendação de uso) de HTTPS em detrimento do HTTP se tornou, usualmente são relevadas durante as discussões sobre o assunto.
+
+Com alguma sorte, este texto deveria ser útil também para outros procurando informações em português[^1] sobre o assunto - porém alguns links e referências ao longo do texto poderão estar em inglês.
+
+O artigo está estruturado com base no [5W1H](https://pt.wikipedia.org/wiki/5WH), uma forma de listar perguntas a serem feitas para compreender um fato, história ou situação (Who?/What?/Where?/When?/Why?/How? em inglês, ou Quem?/Quê?/Quando?/Onde?/Por quê?/Como? em português), a fim de apresentar os comos e porquês do uso de HTTPS.
 
 ## 1 - O que é HTTPS?
 HTTPS é a sigla para Hyper Text Transfer Protocol, Secure - um protocolo que envelopa a comunicação via HTTP de forma criptografada utilizando um protocolo TLS ou SSL, com um certificado apresentado pelo servidor HTTPS ao qual se está conectando. 
@@ -166,6 +169,7 @@ Indicativo no browser de conexão via HTTPS (com certificado válido):
 ![Conexão via https no browser](static/https-browser-screenshot.png "Conexão via HTTPS no browser")
 
 Clicando em 'More Information' e em 'View Certificate' na janela seguinte, é possível verificar mais alguns dados do certificado:
+
 ![Informações do certificado no firefox](static/cert-info-browser.png "Informações do certificado no Firefox")
 
 Para validar com mais profundidade a configuração do Servidor Web quanto a HTTPS, uma ferramenta muito útil é o [Qualys SSL Server Test](https://www.ssllabs.com/ssltest/). Além de testar o acesso ao servidor, são verificadas informações como tipos de criptografia permitidos na conexão, versões do protocolo TLS e SSL aceitas pelo servidor, suporte a acesso por diferentes browsers e clientes e suscetibilidade a algumas vulnerabilidades de certas versões e implementações dos protocolos SSL, TLS, e HTTPS, como Heartbleed, POODLE, e DROWN (uma explicação rápida destas vulnerabilidades pode ser encontrada [neste artigo](https://www.security.ufrj.br/tutoriais/servidores-que-utilizam-ssl-vulnerabilidades-e-solucoes/) e nas suas referências).
@@ -200,8 +204,8 @@ A maioria destes assuntos será apresentada em maior ou menor grau nos próximos
  - [Cloudflare Learning](https://www.cloudflare.com/learning/ssl/what-is-ssl/) (em inglês)
  - [Blog](https://www.troyhunt.com/tag/ssl/) do Troy Hunt, pesquisador em segurança da informação e criador do [Have I been Pwned?](https://haveibeenpwned.com/) (em inglês)
  - [Meu site precisa de HTTPS?](https://meusiteprecisadehttps.com.br/)
- - [HTTPS is Easy](https://httpsiseasy.com/) (vídeos em inglês com legenda em português
+ - [HTTPS is Easy](https://httpsiseasy.com/) (vídeos em inglês com legenda em português)
 
-[^1]: font-variant-position: super
+[^1]: Para conteúdos mais completos sobre o assunto em inglês, pode-se consultar as referências na última seção do texto.
 [^2]: Ou sítio, para os mais literalmente lusófonos
-[^3]: Sem quebrar a criptografia utilizada na conexão, o que pode ser discutido em momento oportuno.
+[^3]: "possível" não inclui casos/vulnerabilidades em que é possível quebrar a criptografia utilizada na conexão. Estes casos serão discutidos em momento oportuno.

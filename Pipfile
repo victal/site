@@ -9,6 +9,9 @@ verify_ssl = true
 pelican = "*"
 ghp-import = "*"
 Markdown = "*"
+pillow = "*"
+beautifulsoup4 = "*"
+pysvg-py3 = "*"
 
 [requires]
 python_version = "3.6"
