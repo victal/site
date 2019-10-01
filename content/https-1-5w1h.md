@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Qustões perguntadas por ninguém sobre HTTPS
+title: Questões perguntadas por ninguém sobre HTTPS
 date: 2019-09-27
 category: https
 ---
@@ -19,7 +19,7 @@ HTTPS é a sigla para Hyper Text Transfer Protocol, Secure - um protocolo que en
 
 Embora mais detalhes sobre como esta criptografia é realizada serão apresentados em outro momento, esta descrição basta para apresentar as motivações para utilizar HTTPS na comunicação entre um cliente e um servidor (em oposição a simplesmente utilizar HTTP), e como e quando fazer isso.
 
-## 2 - Por quê utilizar HTTPS?
+## 2 - Por que utilizar HTTPS?
 
 Resumidamente, o uso do protocolo HTTPS na comunicação cliente-servidor garante três objetivos:
 
@@ -34,7 +34,7 @@ Note-se que esses objetivos são alcançados supondo que o cliente consiga valid
 A validação de um certificado pelo browser pode ocorrer de duas formas:
 
  - Adicionando (ou "instalando") diretamente o certificado a um rol de certificados "confiáveis" do cliente. Isto pode ser feito com o certificado sendo transmitido ao cliente previamente por uma via segura que não a conexão HTTPS com o servidor, e é mais comum para servidores que fazem parte de uma rede interna (p.ex. em uma empresa), na qual a quantidade de clientes que vão acessar o servidor, e portanto precisam receber e instalar o certificado, é limitada.
- - Confiando em um certificado-raiz: Um certificado TLS atrelado a um domínio é normalmente emitido por uma entidade denominada Autoridade Certificadora (CA na sigla em inglês) - que verifica que o certificado para um determinado domínio foi solicitado por um responsável por este. O certificado gerado é assinado pela CA utilizando o certificado _dela_, que por sua vez foi gerado e assinado como sendo válido por uma outra CA, e assim por diante até chegar em uma entre um numero de CAs "raiz", cujos certificados são validados por meios externos a essa árvore de CAs por fabricantes de software, que por sua vez adicionam estes certificados raiz como confiáveis pelos seus browsers/SOs/outros clientes.
+ - Confiando em um certificado-raiz: Um certificado TLS atrelado a um domínio é normalmente emitido por uma entidade denominada Autoridade Certificadora (CA na sigla em inglês) - que verifica que o certificado para um determinado domínio foi solicitado por um responsável por este. O certificado gerado é assinado pela CA utilizando o certificado _dela_, que por sua vez foi gerado e assinado como sendo válido por uma outra CA, e assim por diante até chegar em uma entre um número de CAs "raiz", cujos certificados são validados por meios externos a essa árvore de CAs por fabricantes de software, que por sua vez adicionam estes certificados raiz como confiáveis pelos seus browsers/SOs/outros clientes.
 
 Por exemplo, o certificado para https://www.bb.com.br tem uma cadeia com três certificados, em que o certificado para "USERTrust RSA Certification Authority" corresponde ao certificado raiz.
 
@@ -44,7 +44,7 @@ Vale explicitar também que a validação descrita acima diz respeito apenas à 
 
   - *Data de Validade*: Os certificados utilizados tem um tempo de vida que variam entre alguns meses e um a dois anos. Via de regra, para evitar problemas em caso de vazamento de dados privados referentes ao certificado, é sugerido o uso de certificados com tempo de vida mais curto aliados a formas de facilitar ou automatizar sua substituição.
 
-  - *Domínio*: Certificados são atrelados a um domínio (e.g. victal.eti.br) e um ou mais subdomínios do mesmo, logo por definição é necessário que o cliente verifique que o domínio para o qual o certificado é válido é o mesmo que está sendo acessado.
+  - *Domínio*: Certificados são atrelados a um domínio (e.g. victal.eti.br) e um ou mais subdomínios do mesmo, de forma que (por definição) é necessário que o cliente verifique que o domínio para o qual o certificado é válido é o mesmo que está sendo acessado.
 
 Também é possível, juntando estas duas formas de validação, adicionar diretamente um certificado não verificado através da hierarquia normal de certificados-raiz à lista de certificados confiáveis a fim de confiar nos certificados geraos e assinados a partir dele. Isto é algo mais plausível em redes internas corporativas com um número significativo de serviços web - por ser mais simples adicionar um certificado raiz às máquinas dos colaboradores conectadas à rede do que os certificados para todos os serviços disponíveis (certificados que teriam que ser re-adicionados periodicamente conforme os anteriores expirassem).
 
@@ -58,7 +58,7 @@ Em casos que o servidor lida com dados sensíveis (como logins/senhas ou outros 
 
 Para serviços (ou partes de um serviço) que não lidam com este tipo de dado porém, ainda é relevante o uso de HTTPS pelas suas características de Autenticidade e Integridade de dados. Conexões HTTP são trivialmente suscetíveis a ataques de MITM[^4], em que um terceiro sistema altera o conteúdo das mensagens trafegadas entre o cliente e o servidor para, por exemplo:
   - Substituir arquivos para download inócuos por versões com malware;
-  - Adicionar scripts para injeção de conteúdo que podem ir de simples propagandas (algo que até provedores de internet chegam a fazer) a mineradores de criptomoeda ou ataques de CSRF a outras páginas (como a [interface de administração do seu roteador](https://nakedsecurity.sophos.com/2012/10/01/hacked-routers-brazil-vb2012/));
+  - Adicionar scripts para injeção de conteúdo que podem ir de simples propagandas (algo que até provedores de internet chegam a fazer) a mineradores de criptomoeda ou ataques de CSRF a outras páginas (como a [interface de administração do seu roteador](https://nakedsecurity.sophos.com/2012/10/01/hacked-routers-brazil-vb2012/)).
 
 
 ## 5 - Como usar HTTPS para servir conteúdo?
@@ -97,7 +97,7 @@ certbot-auto certonly --manual -d [domínio] [-d um-subdomínio -d outro-subdom�
 ```
 e seguir os passos no terminal.
 
-Por exemplo, para gerar um certificado para 'victal.eti.br' E 'www.victal.eti.br' (i.e. para esse site), temos a seguinte série de passos: 
+Por exemplo, para gerar um certificado para os domínios 'victal.eti.br' e 'www.victal.eti.br' (i.e. para este site), temos a seguinte série de passos: 
 
 1 - Inicialmente, é requisitado um email para contato (em caso de algum problema que gere a invalidação do certificado ou quando o mesmo estiver para expirar):
 
@@ -149,7 +149,7 @@ cp /etc/apache2/sites-available/000-default.conf{,.backup}
 
 ![Configuração Apache 3](static/apache-3-overwrite.png "Configuração Apache 3")
 
-5 - No caso do apache, como pode ser visto no princípio do arquivo de configuração, é necessário hablitar alguns módulos, caso já não estejam habilitados, com:
+5 - No caso do apache, como pode ser visto no princípio do arquivo de configuração, é necessário habilitar alguns módulos, caso já não estejam habilitados, com:
 
 ```
 a2enmod ssl rewrite headers
