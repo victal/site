@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Questões perguntadas por ninguém sobre HTTPS</title>
+        <link rel="stylesheet" href="https://victal.eti.br/theme/css/main.css" />
+        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Free Lunch Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://victal.eti.br/">Free Lunch <strong>"There is no such thing as this site"</strong></a></h1>
+                <nav><ul>
+                    <li class="active"><a href="https://victal.eti.br/category/https.html">https</a></li>
+                    <li><a href="https://victal.eti.br/category/java.html">java</a></li>
+                    <li><a href="https://victal.eti.br/category/tips.html">tips</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://victal.eti.br/questoes-perguntadas-por-ninguem-sobre-https.html" rel="bookmark"
+           title="Permalink to Questões perguntadas por ninguém sobre HTTPS">Questões perguntadas por ninguém sobre HTTPS</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-09-27T00:00:00-03:00">
+                Published: sex 27 setembro 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/https.html">https</a>.</p>
+
+</footer><!-- /.post-info -->      <p>Este texto é o primeiro de uma série tentativa de tópicos relacionados à segurança - inicialmente no desenvolvimento e manutenção de aplicações web - a fim de consolidar os conhecimentos adquiridos na área ao longo de alguns anos de estudo e desenvolvimento de aplicações deste tipo.</p>
+<p>Iniciamos por algumas questões sobre HTTPS que, devido ao quão ubíquo o uso (e a recomendação de uso) de HTTPS em detrimento do HTTP se tornou, usualmente são relevadas durante as discussões sobre o assunto.</p>
+<p>Com alguma sorte, este texto deveria ser útil também para outros procurando informações em português<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> sobre o assunto - porém alguns links e referências ao longo do texto poderão estar em inglês.</p>
+<p>O artigo está estruturado com base no <a href="https://pt.wikipedia.org/wiki/5WH">5W1H</a>, uma forma de listar perguntas a serem feitas para compreender um fato, história ou situação (Who?/What?/Where?/When?/Why?/How? em inglês, ou Quem?/Quê?/Quando?/Onde?/Por quê?/Como? em português), a fim de apresentar os comos e porquês do uso de HTTPS.</p>
+<h2>1 - O que é HTTPS?</h2>
+<p>HTTPS é a sigla para Hyper Text Transfer Protocol, Secure - um protocolo que envelopa a comunicação via HTTP de forma criptografada utilizando um protocolo TLS ou SSL, com um certificado apresentado pelo servidor HTTPS ao qual se está conectando. 
+(Por completeza: HTTP é o protocolo padrão utilizado para transferência de dados na Web - entre um browser e o servidor que hospeda um site<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> ou entre aplicações e APIs na Web ou mesmo em redes internas).</p>
+<p>Embora mais detalhes sobre como esta criptografia é realizada serão apresentados em outro momento, esta descrição basta para apresentar as motivações para utilizar HTTPS na comunicação entre um cliente e um servidor (em oposição a simplesmente utilizar HTTP), e como e quando fazer isso.</p>
+<h2>2 - Por que utilizar HTTPS?</h2>
+<p>Resumidamente, o uso do protocolo HTTPS na comunicação cliente-servidor garante três objetivos:</p>
+<ul>
+<li>Autenticidade: Durante o estabelecimento da conexão HTTPS, o servidor apresenta um certificado, que é atrelado a um ou mais nomes de domínio específicos. Com isso, uma vez que o cliente (vulgo browser) verifica que o certificado apresentado por um servidor para um domínio é válido, verifica por tabela que o servidor a que está se conectando é o autêntico responsável por servir o conteúdo referente àquele domínio.</li>
+<li>Integridade: Dado que o certificado apresentado pelo servidor é autêntico, não deveria ser possível<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> a um terceiro alterar o conteúdo da comunicação entre o cliente e o servidor de forma indetectável por estes.</li>
+<li>Confidencialidade: Dado que o certificado apresentado pelo servidor é autêntico, não deveria ser possível a um terceiro ler o conteúdo não criptografado da comunicação entre estes.</li>
+</ul>
+<p>Note-se que esses objetivos são alcançados supondo que o cliente consiga validar que o tal certificado apresentado pelo servidor é válido e autêntico, o que leva à próxima questão:</p>
+<h2>3 - Quem vai saber dizer se um certificado é autêntico?</h2>
+<p>A validação de um certificado pelo browser pode ocorrer de duas formas:</p>
+<ul>
+<li>Adicionando (ou "instalando") diretamente o certificado a um rol de certificados "confiáveis" do cliente. Isto pode ser feito com o certificado sendo transmitido ao cliente previamente por uma via segura que não a conexão HTTPS com o servidor, e é mais comum para servidores que fazem parte de uma rede interna (p.ex. em uma empresa), na qual a quantidade de clientes que vão acessar o servidor, e portanto precisam receber e instalar o certificado, é limitada.</li>
+<li>Confiando em um certificado-raiz: Um certificado TLS atrelado a um domínio é normalmente emitido por uma entidade denominada Autoridade Certificadora (CA na sigla em inglês) - que verifica que o certificado para um determinado domínio foi solicitado por um responsável por este. O certificado gerado é assinado pela CA utilizando o certificado <em>dela</em>, que por sua vez foi gerado e assinado como sendo válido por uma outra CA, e assim por diante até chegar em uma entre um número de CAs "raiz", cujos certificados são validados por meios externos a essa árvore de CAs por fabricantes de software, que por sua vez adicionam estes certificados raiz como confiáveis pelos seus browsers/SOs/outros clientes.</li>
+</ul>
+<p>Por exemplo, o certificado para https://www.bb.com.br tem uma cadeia com três certificados, em que o certificado para "USERTrust RSA Certification Authority" corresponde ao certificado raiz.</p>
+<p><img alt="Hierarquia de certificados para www.bb.com.br" src="static/hierarquia_certificados.png" title="Hierarquia de certificados para www.bb.com.br"></p>
+<p>Vale explicitar também que a validação descrita acima diz respeito apenas à validação da <em>autenticidade</em> do certificado, mas o cliente usualmente valida outras informações do mesmo, como:</p>
+<ul>
+<li>
+<p><em>Data de Validade</em>: Os certificados utilizados tem um tempo de vida que variam entre alguns meses e um a dois anos. Via de regra, para evitar problemas em caso de vazamento de dados privados referentes ao certificado, é sugerido o uso de certificados com tempo de vida mais curto aliados a formas de facilitar ou automatizar sua substituição.</p>
+</li>
+<li>
+<p><em>Domínio</em>: Certificados são atrelados a um domínio (e.g. victal.eti.br) e um ou mais subdomínios do mesmo, de forma que (por definição) é necessário que o cliente verifique que o domínio para o qual o certificado é válido é o mesmo que está sendo acessado.</p>
+</li>
+</ul>
+<p>Também é possível, juntando estas duas formas de validação, adicionar diretamente um certificado não verificado através da hierarquia normal de certificados-raiz à lista de certificados confiáveis a fim de confiar nos certificados geraos e assinados a partir dele. Isto é algo mais plausível em redes internas corporativas com um número significativo de serviços web - por ser mais simples adicionar um certificado raiz às máquinas dos colaboradores conectadas à rede do que os certificados para todos os serviços disponíveis (certificados que teriam que ser re-adicionados periodicamente conforme os anteriores expirassem).</p>
+<h2>4 - Onde e quando usar HTTPS?</h2>
+<p>Sempre (que possível). </p>
+<p>Com o advento de certificados TLS gratuitos em massa (via <a href="https://letsencrypt.org/">Let's Encrypt</a> e outros CAs), <a href="https://www.httpvshttps.com">melhorias de performance significativas</a> e mesmo engines de busca dando prioridade a resultados em HTTPS a páginas em HTTP, além dos ganhos de segurança, não deveria haver motivo para deixar de utilizar HTTPS em todo servidor Web acessível na Internet.</p>
+<p>Em casos que o servidor lida com dados sensíveis (como logins/senhas ou outros dados de autenticação, ou dados acessíveis apenas a usuários cadastrados/administrativos), é imediato chegar à conclusão de que se precisa utilizar HTTPS por conta da confidencialidade dos dados.</p>
+<p>Para serviços (ou partes de um serviço) que não lidam com este tipo de dado porém, ainda é relevante o uso de HTTPS pelas suas características de Autenticidade e Integridade de dados. Conexões HTTP são trivialmente suscetíveis a ataques de MITM[^4], em que um terceiro sistema altera o conteúdo das mensagens trafegadas entre o cliente e o servidor para, por exemplo:
+  - Substituir arquivos para download inócuos por versões com malware;
+  - Adicionar scripts para injeção de conteúdo que podem ir de simples propagandas (algo que até provedores de internet chegam a fazer) a mineradores de criptomoeda ou ataques de CSRF a outras páginas (como a <a href="https://nakedsecurity.sophos.com/2012/10/01/hacked-routers-brazil-vb2012/">interface de administração do seu roteador</a>).</p>
+<h2>5 - Como usar HTTPS para servir conteúdo?</h2>
+<p>Agora que nos convencemos(?) de que é necessário utilizar HTTPS quando disponibilizando conteúdo na Web, vejamos como fazê-lo. Neste caso, o certificado será gerado via Let's Encrypt, e instalado em um servidor Apache 2 ao qual se tem acesso remoto. Para configuração em outras situações (como um serviço de hospedagem que fornece apenas uma interface de admin via Web, por exemplo), pode ser necessário consultar a documentação do serviço de administração ou hosting para realizar a instalação do certificado.</p>
+<h3>5.1 - Geração de certificados</h3>
+<p>Para geração do certificado, o Let's Encrypt disponibiliza o <a href="https://certbot.eff.org">Certbot</a>, uma ferramenta de linha de comando para geração de certificados TLS e, em alguns casos, configuração automática do servidor Web. </p>
+<p>Instruções de instalação e uso do Certbot específicas por sistema operacional e Servidor Web podem ser encontradas <a href="https://certbot.eff.org/instructions">aqui</a> (em inglês) - e caso a combinação de SO e Web server utilizados se encaixe em uma das configurações apresentadas no site, recomenda-se utilizá-la, para obter funcionalidades extras como atualização automática do certbot ou renovação automática de certificados.</p>
+<p>Caso não seja possível seguir as instruções descritas na documentação oficial, os passos a seguir deveriam ser o suficiente para gerar um par de certificados para os domínios desejados - o único pré-requisito é uma máquina com Linux instalado para a execução do certbot.</p>
+<ul>
+<li>Baixe a última versão do certbot-auto, um wrapper para o certbot que trata da instalação/atualização da ferramenta propriamente dita, copie-a para uma pasta que faça parte do <code>$PATH</code> (por conveniência), torne executável com <code>chmod</code> e execute-a sem argumentos para realizar o processo de instalação.</li>
+</ul>
+<div class="highlight"><pre><span></span>    <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="p">.</span><span class="n">eff</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
+    <span class="n">sudo</span> <span class="n">mv</span> <span class="n">certbot</span><span class="o">-</span><span class="n">auto</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
+    <span class="n">sudo</span> <span class="n">chown</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
+    <span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">0755</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
+    <span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
+</pre></div>
+
+
+<p>Para validar que o requisitante do certificado é responsável pelo respectivo domínio, o Certbot utiliza uma de duas verificações possíveis, à escolha do usuário:</p>
+<ul>
+<li>DNS: Em que é solicitado ao requisitante adicionar um registro DNS do tipo TXT para um subdomínio específico do domínio solicitado, com um valor gerado dinamicamente;</li>
+<li>HTTP: Em que é solicitada ao requisitante a inclusão de um conteúdo gerado dinamicamente em um path também dinamicamente gerado (iniciando em /.well-known/acme-challenge) no servidor Web acessível através do nome de domínio para o qual o certificado está sendo gerado.</li>
+</ul>
+<p>Restrições na forma de validação ocorrem apenas para certificados <em>wildcard</em>, válidos para todos os subdomínios de um domínio (e.g. o certificado <em>wildcard</em> para <code>*.example.org</code> vale para todo subdomínio qualquercoisa.example.org). Como não é possível listar todos os subdomínios válidos de um domínio a fim de validá-los via HTTP, a validação deve ser feita via DNS.</p>
+<p>Desta forma, para solicitar a geração de certificados para um ou mais domínios, basta executar:</p>
+<div class="highlight"><pre><span></span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span><span class="w"> </span><span class="n">certonly</span><span class="w"> </span><span class="c1">--manual -d [domínio] [-d um-subdomínio -d outro-subdomínio etc.] --preferred-challenges [dns ou http]</span>
+</pre></div>
+
+
+<p>e seguir os passos no terminal.</p>
+<p>Por exemplo, para gerar um certificado para os domínios 'victal.eti.br' e 'www.victal.eti.br' (i.e. para este site), temos a seguinte série de passos: </p>
+<p>1 - Inicialmente, é requisitado um email para contato (em caso de algum problema que gere a invalidação do certificado ou quando o mesmo estiver para expirar):</p>
+<p><img alt="Execução do certbot para um domínio" src="static/certbot-1-email.png" title="Execução do certbot para um domínio"></p>
+<p>2 - Em seguida, é solicitado o aceite dos termos de serviço do Let's encrypt (disponíveis em https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf), do compartilhamento (opcional) do e-mail adicionado anteriormente com a <a href="https://eff.org">EFF</a>, entidade criadora e das principais mantenedoras do Let's Encrypt, e do consentimento ao armazenamento do endereço IP utilizado para geração do certificado (obrigatório).</p>
+<p><img alt="Aceite de termos de uso" src="static/certbot-2-checks.png" title="Aceite de termos de uso"></p>
+<p>3 - Nesse ponto é fornecido o valor a ser utilizado na entrada DNS com tipo TXT para validação do domínio. A entrada deve ser criada para o hostname <code>_acme-challenge.[domínio sendo validado]</code>. Este passo se repete para cada subdomínio passado como parâmetro para o certbot.</p>
+<p><img alt="Validação via DNS" src="static/certbot-3-challenge.png" title="Validação via DNS"></p>
+<p>3.5 - Pode-se validar a configuração DNS realizada com <code>dig TXT _acme-challenge.[domínio]</code> ou outra ferramenta de consulta DNS</p>
+<p><img alt="Teste de configuração DNS" src="static/certbot-4-dig.png" title="Teste de configuração DNS"></p>
+<p>4 - Caso a verificação tenha ocorrido com sucesso, os certificados terão sido criados <code>/etc/letsencrypt/live/[domínio]</code> (na prática, com symlinks para <code>/etc/letsencrypt/archive</code>). 
+Na imagem, os sufixos nos nomes dos arquivos ocorrem por estar re-gerando certificados para o mesmo domínio, que já haviam sido renovados algumas vezes (o certbot guarda o histórico de certificados gerados).</p>
+<p><img alt="Certificados gerados" src="static/certbot-5-certs.png" title="Certificados gerados"></p>
+<h3>5.2 - Configuração do Servidor Web</h3>
+<p>Após a obtenção dos certificados, a configuração do Servidor Web para utilizá-los é, como se pode esperar, bastante dependente do servidor utilizado (Apache, nginx, IIS ou qualquer outro). </p>
+<p>Configurações diferentes são recomendadas dependendo dos clientes que vão se conectar ao servidor. Por exemplo, quando se deseja suportar clientes mais obsoletos como IE 8 ou apps em versões antigas de Android e iOS, são necessárias configurações com maior compatibilidade; e, em contrapartida, caso se deseje suportar apenas as últimas versões de browsers e SOs é possível utilizar configurações mais restritivas mas mais seguras).</p>
+<p>Felizmente, para uma configuração mais rápida do servidor Web desejado pode-se recorrer ao <a href="https://ssl-config.mozilla.org/#server=apache&amp;server-version=2.4.39&amp;config=intermediate&amp;ocsp=false">Gerador de Configuração SSL</a> da Mozilla, que oferece trechos de configuração para uma série de Servidores Web ou outros serviços, em diferentes graus de compatibilidade.</p>
+<p>Para os servidores Web de uso mais comum (Apache e Nginx), a aplicação dos trechos de configuração fornecidos por essa ferramenta pode ser realizada de forma suficientemente direta (aqui exemplificada com a configuração de um servidor Apache com configuração Intermediária:</p>
+<p>0 - caso os certificados não tenham sido gerados na mesma máquina em que o servidor web se encontra, copie-os para um diretório no servidor (via SSH, SFTP ou outro protocolo seguro desejado) e certifique-se que apenas o usuário do servidor web (e.g. www-data) tem acesso a este diretório. Como no caso do exemplo acima os certificados foram gerados na própria máquina do servidor, será utilizado o diretório <code>/etc/letsencrypt/live/victal.eti.br</code> nos exemplos:</p>
+<p>1 - Por via das dúvidas, faça um backup do arquivo de configuração atual do Apache (usualmente dentro de <code>sites-available</code> no diretório de configuração do Apache) via, por exemplo:</p>
+<div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="mi">000</span><span class="o">-</span><span class="k">default</span><span class="p">.</span><span class="n">conf</span><span class="err">{</span><span class="p">,.</span><span class="n">backup</span><span class="err">}</span>
+</pre></div>
+
+
+<p>2 - Partindo da configuração atual do Apache para o site acessível via HTTP, e do trecho de configuração gerado pelo gerador da Mozilla:</p>
+<p><img alt="Configuração Apache 1" src="static/apache-1-original.png" title="Configuração Apache 1"></p>
+<p>3 - Mova a configuração atual do virtualhost para o virtualhost <code>*:443</code> (i.e. utilizando HTTPS) da configuração gerada</p>
+<p><img alt="Configuração Apache 2" src="static/apache-2-move.png" title="Configuração Apache 2"></p>
+<p>4 - Substitua o conteúdo da configuração atual pela nova configuração com o trecho adicionado no passo anterior, trocando os valores das diretivas <code>SSLCertificateFile</code> e <code>SSLCertificateKeyFile</code> pelos caminhos para os arquivos <code>fullchain.pem</code> e <code>privkey.pem</code> do certificado gerado e salve o arquivo</p>
+<p><img alt="Configuração Apache 3" src="static/apache-3-overwrite.png" title="Configuração Apache 3"></p>
+<p>5 - No caso do apache, como pode ser visto no princípio do arquivo de configuração, é necessário habilitar alguns módulos, caso já não estejam habilitados, com:</p>
+<div class="highlight"><pre><span></span><span class="n">a2enmod</span> <span class="n">ssl</span> <span class="n">rewrite</span> <span class="n">headers</span>
+</pre></div>
+
+
+<p>6 - Recarregue o servidor apache para que as configurações tenham efeito:</p>
+<div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">apache2</span> <span class="n">reload</span>
+</pre></div>
+
+
+<h2>6 - Como saber se a configuração HTTPS para um domínio está correta?</h2>
+<p>O teste mais simples e direto para verificar se a configuração do servidor Web realizada anteriormente está OK é simplesmente acessar o servidor via HTTPS a partir de um browser e verificar se a) o servidor está acessível corretamente e b) os dados do certificado apresentados pelo browser correspondem ao certificado gerado anteriormente, por exemplo, acessando o endereço deste site no Firefox: </p>
+<p>Indicativo no browser de conexão via HTTPS (com certificado válido): 
+<img alt="Conexão via https no browser" src="static/https-browser-screenshot.png" title="Conexão via HTTPS no browser"></p>
+<p>Clicando em 'More Information' e em 'View Certificate' na janela seguinte, é possível verificar mais alguns dados do certificado:</p>
+<p><img alt="Informações do certificado no firefox" src="static/cert-info-browser.png" title="Informações do certificado no Firefox"></p>
+<p>Para validar com mais profundidade a configuração do Servidor Web quanto a HTTPS, uma ferramenta muito útil é o <a href="https://www.ssllabs.com/ssltest/">Qualys SSL Server Test</a>. Além de testar o acesso ao servidor, são verificadas informações como tipos de criptografia permitidos na conexão, versões do protocolo TLS e SSL aceitas pelo servidor, suporte a acesso por diferentes browsers e clientes e suscetibilidade a algumas vulnerabilidades de certas versões e implementações dos protocolos SSL, TLS, e HTTPS, como Heartbleed, POODLE, e DROWN (uma explicação rápida destas vulnerabilidades pode ser encontrada <a href="https://www.security.ufrj.br/tutoriais/servidores-que-utilizam-ssl-vulnerabilidades-e-solucoes/">neste artigo</a> e nas suas referências).</p>
+<p>A configuração padrão fornecida pela ferramenta de configuração da Mozilla, apresentada anteriormente, com o grau de compatibilidade 'Intermediate' costuma ser o suficiente para obter um grau A ou A+ no teste do Qualys, por exemplo:</p>
+<p><img alt="Teste do Qualys para victal.eti.br" src="static/qualys-test-ssl.png" title="Teste do Qualys para victal.eti.br"></p>
+<h2>7 - O que foi isso que eu acabei de ler? E o que fazer agora? (Próximos passos)</h2>
+<p>Um problema recorrente para soluções de segurança ubíquas e padrões de mercado, como o HTTPS, é que a discussão pela sua adoção começa e termina em "Vamos utilizar HTTPS!", gerando um uso por <a href="https://pt.wikipedia.org/wiki/Culto_%C3%A0_carga">Culto à carga</a>, que sempre vai gerar problemas quando as circunstâncias em torno dessa solução mudarem (novas vulnerabilidades? novos protocolos? novas formas de criptografia?)
+Idealmente, então, este texto deveria ter servido para consolidar estas explicações básicas dos comos e porquês de utilizar HTTPS, e, de quebra, apresentar um roteiro para realizar uma configuração básica de um servidor Web para suportar este protocolo.</p>
+<p>A partir deste conhecimento, algumas rotas se abrem para aprofundar o conhecimento do uso e funcionamento interno do HTTPS:
+  - Outras questões comuns na configuração de HTTPS, como:
+    - Conteúdo misto (mixed content)
+    - Tráfego/configuração de cookies e outros dados de autenticação de forma segura
+    - Configuração de acesso HTTPS via CDNs (e.g. CLoudflare) quando não é possível configurá-lo direto no servidor</p>
+<ul>
+<li>
+<p>Funcionamento mais a fundo do protocolo TLS, como:</p>
+<ul>
+<li>Quais as versões atualmente existentes de TLS/SSL, no que diferem e quais (não) utilizar?</li>
+<li>Como o protocolo estabelece uma comunicação segura entre as partes?</li>
+<li>Quais são os parâmetros de configuração deste protocolo (e.g. as diretivas utilizadas para configurar o servidor Web para HTTPS no exemplo anterior), o que representam e no que influenciam?</li>
+<li>Quais as diferenças entre os tipos de certificados SSL existentes?</li>
+</ul>
+</li>
+<li>
+<p>Extensões ao protocolo HTTPS, como:</p>
+<ul>
+<li>HSTS (HTTP Strict Transport Security) </li>
+<li>HPKP (HTTP Public Key Pinning)</li>
+</ul>
+</li>
+</ul>
+<p>A maioria destes assuntos será apresentada em maior ou menor grau nos próximos textos sobre este tema, e, para artigos e explicações bem mais amplos sobre o assunto, recomendam-se as seguintes fontes:</p>
+<ul>
+<li><a href="https://www.cloudflare.com/learning/ssl/what-is-ssl/">Cloudflare Learning</a> (em inglês)</li>
+<li><a href="https://www.troyhunt.com/tag/ssl/">Blog</a> do Troy Hunt, pesquisador em segurança da informação e criador do <a href="https://haveibeenpwned.com/">Have I been Pwned?</a> (em inglês)</li>
+<li><a href="https://meusiteprecisadehttps.com.br/">Meu site precisa de HTTPS?</a></li>
+<li><a href="https://httpsiseasy.com/">HTTPS is Easy</a> (vídeos em inglês com legenda em português)</li>
+</ul>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>Para conteúdos mais completos sobre o assunto em inglês, pode-se consultar as referências na última seção do texto.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Ou sítio, para os mais literalmente lusófonos&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>"possível" não inclui casos/vulnerabilidades em que é possível quebrar a criptografia utilizada na conexão. Estes casos serão discutidos em momento oportuno.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="http://github.com/victal">Github</a></li>
+                            <li><a href="http://twitter.com/g_victal">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

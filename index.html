@@ -5,16 +5,13 @@
         <title>Free Lunch</title>
         <link rel="stylesheet" href="https://victal.eti.br/theme/css/main.css" />
         <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Free Lunch Atom Feed" />
-
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://victal.eti.br/">Free Lunch  <strong>"There is no such thing as this site"</strong></a></h1>
+                <h1><a href="https://victal.eti.br/">Free Lunch <strong>"There is no such thing as this site"</strong></a></h1>
                 <nav><ul>
+                    <li><a href="https://victal.eti.br/category/https.html">https</a></li>
                     <li><a href="https://victal.eti.br/category/java.html">java</a></li>
                     <li><a href="https://victal.eti.br/category/tips.html">tips</a></li>
                 </ul></nav>
@@ -22,7 +19,71 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://victal.eti.br/websphere-7-on-ubuntu-linux.html">Websphere 7 on Ubuntu Linux</a></h1>
+                    <h1 class="entry-title"><a href="https://victal.eti.br/questoes-perguntadas-por-alguem-sobre-https.html">Questões perguntadas por alguém sobre HTTPS</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2019-09-27T00:00:00-03:00">
+                Published: sex 27 setembro 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/https.html">https</a>.</p>
+
+</footer><!-- /.post-info --><p>No primeiro texto falando sobre HTTPS publicado aqui há uns tempos, foi feita uma introdução ao funcionamento do protocolo HTTPS, principalmente sobre os comos e porquês teóricos de utilizá-lo sempre que possível - esse texto pode ser encontrado <a href="https://victal.eti.br/qustoes-perguntadas-por-ninguem-sobre-https.html">aqui</a>.</p>
+<p>Se no primeiro texto utilizamos questões hipotéticas como artifício literário para facilitar a leitura, neste o intuito é responder algumas questões reais que ficaram abertas no texto anterior e/ou foram feitas por ou para mim apõs a publicação anterior, antes de entrar em maiores detalhes/mudar de assunto.</p>
+<p>1 - SSL? TLS? SSL/TLS? O que é o quê entre os dois protocolos?</p>
+<p>Enquanto a definição de HTTPS (um protocolo em que uma camada de criptografia é adicionada em volta da comunicação via protocolo HTTP), SSL e TLS costumam causar mais confusão, principalmente por serem usados de forma intercambiável para definir "o protocolo utilizado para criptografar os dados numa conexão HTTPS".</p>
+<p>De forma estrita, <em>SSL</em> (Secure Sockets Layer), é o protocolo inicial desenvolvido pela Netscape para atuar como esta camada de criptografia em cima do protocolo HTTP. Este SSL 'estrito' é um protocolo já obsoleto, tendo sua última versão (3.0) definida em 1996 e devendo ser utilizado apenas quando for absolutamente necessário permitir o acesso de clientes que suportem apenas este protocolo.</p>
+<p>Em 1999, uma versão atualizada do protocolo SSL 3.0 foi proposta pela Internet Engineering Task Force. Para identificar que esta versão do protocolo e as subsequentes estariam sob desenvolvimento e tutela da IETF e não mais da Netscape, o protocolo em proposta foi renomeado para <em>TLS</em> (Transport Layer Security) 1.0.</p>
+<p>Por conta desta continuidade, é comum e inócuo se referir de forma intercambiável a SSL ou TLS (ou SSL/TLS) em discussões/textos em que não é necessário especificar a versão do protocolo utilizada. </p>
+<p>Para discussões em que a versão exata do protocolo é relevante, como definição de quais versões de protocolo suportar em um determinado servidor, ou quais protocolos estão vulneráveis a uma determinada vulnerabilidade, é imperativo explicitar o protocolo e a(s) versão(ões) em discussão.</p>
+<p>Por simplicidade e para deixar clara a obsolescência do protocolo SSL, será utilizado o nome TLS neste texto mesmo quando se tratar de uma situação em que ambos os protocolos seriam válidos.</p>
+<p>2 - Que subdomínios estão cobertos por um certificado 'wildcard'? Tenho um nome de domínio com N níveis de sub-(sub-sub-sub-sub-)subdomínios, consigo gerar um certificado único que funcione neste caso?</p>
+<p>Relembrando do texto anterior, certificados <em>wildcard</em> são válidos para todos os subdomínios de um determinado domínio. Por exemplo, um certificado <em>wildcard</em> para <strong>*.victal.eti.br</strong> é válido para qualquer subdominio.victal.eti.br.</p>
+<p>O 'asterisco' num certificado wildcard, porém, é valido apenas como <em>prefixo</em> de um domínio e substitui apenas <em>um nível</em> de subdomínios. Ou seja:
+ - Um certificado para <strong>*.example.org</strong> não é válido para o endereço sub1.sub2.example.org - é necessário um certificado valido especificamente para este domínio ou um wildcard para <strong>*.sub2.example.org</strong>
+ - Um "domínio" *.*.example.org não é válido em um certificado - é necessário que o certificado se refira a cada subdomínio intermediário (*.sub1.example.org, *.sub2.example.org, etc.) explicitamente
+ - Um certificado wildcard por si só <strong>NÃO</strong> é válido para a raiz do domínio, e.g. o certificado para *.example.org <em>nâo vale</em> para https://example.org (sem qualquer subdomínio). Nesse caso deve ser utilizado um certificado válido explicitamente para o domínio raiz e para os subdomínios, como no caso abaixo, do DuckDuckGo:</p>
+<p><img alt="Certificado para duckduckgo.com" src="static/cert_duckduckgo.png" title="Certificado para duckduckgo.com"></p>
+<p>3 - Quais as diferenças entre os tipos de validação de certificados existentes? Quando vale a pena o custo de obter um certificado com validação mais completa?</p>
+<p>4 - Meu host não permite utilizar um certificado HTTPS qualquer para meu site e as opções disponíveis ~custam uma fortuna~ estão além do meu orçamento? Que opções eu tenho?</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://victal.eti.br/questoes-perguntadas-por-ninguem-sobre-https.html" rel="bookmark"
+                           title="Permalink to Questões perguntadas por ninguém sobre HTTPS">Questões perguntadas por ninguém sobre HTTPS</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-09-27T00:00:00-03:00">
+                Published: sex 27 setembro 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/https.html">https</a>.</p>
+
+</footer><!-- /.post-info -->                <p>Este texto é o primeiro de uma série tentativa de tópicos relacionados à segurança - inicialmente no desenvolvimento e manutenção de aplicações web - a fim de consolidar os conhecimentos adquiridos na área ao longo de alguns anos de estudo e desenvolvimento de aplicações deste tipo.</p>
+<p>Iniciamos por algumas questões sobre HTTPS …</p>
+                <a class="readmore" href="https://victal.eti.br/questoes-perguntadas-por-ninguem-sobre-https.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://victal.eti.br/websphere-7-on-ubuntu-linux.html" rel="bookmark"
+                           title="Permalink to Websphere 7 on Ubuntu Linux">Websphere 7 on Ubuntu Linux</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2016-08-29T13:47:50-03:00">
                 Published: seg 29 agosto 2016
@@ -33,41 +94,12 @@
         </address>
 <p>In <a href="https://victal.eti.br/category/java.html">java</a>.</p>
 <p>tags: <a href="https://victal.eti.br/tag/reblog.html">reblog</a> </p>
-</footer><!-- /.post-info --><p>Sharing from <a href="http://www.cnblogs.com/BruceLeey/archive/2010/09/18/1830419.html">this post</a>, where I found the solution to a stupid problem:</p>
+</footer><!-- /.post-info -->                <p>Sharing from <a href="http://www.cnblogs.com/BruceLeey/archive/2010/09/18/1830419.html">this post</a>, where I found the solution to a stupid problem:</p>
 <p>Recently I had to go through installing IBM Websphere 7.0 on a Ubuntu VM for development purposes. 
-Installing Websphere (and other IBM server products) is already a pain in the ass by itself, but it turned out even worse as the process of creating a profile in order to start a server was broken with no obvious solution.</p>
-<p>The output for the manageprofiles.sh script was simply:</p>
-<div class="highlight"><pre><span></span><span class="n">INSTCONFFAILED</span><span class="o">:</span> <span class="n">The</span> <span class="n">profile</span> <span class="n">could</span> <span class="n">not</span> <span class="n">be</span> <span class="n">created</span><span class="o">.</span>  <span class="n">For</span> <span class="n">more</span> <span class="n">information</span><span class="o">,</span> <span class="n">consult</span>
-<span class="n">the</span> <span class="sr">/opt/IBM/WebSphere/AppServer/logs/manageprofiles/</span><span class="n">AppSrv01_create</span><span class="o">.</span><span class="na">log</span> <span class="n">file</span>
-</pre></div>
-
-
-<p>Pouring through the log file (XML by default, really?) one could find the line</p>
-<div class="highlight"><pre><span></span><span class="o">/</span><span class="s s-Atom">opt</span><span class="o">/</span><span class="nv">IBM</span><span class="o">/</span><span class="nv">WebSphere</span><span class="o">/</span><span class="nv">AppServer</span><span class="o">/</span><span class="s s-Atom">profileTemplates</span><span class="o">/</span><span class="s s-Atom">default</span><span class="o">/</span><span class="s s-Atom">action</span><span class="o">/</span><span class="s s-Atom">generateKeysForSingleProfile</span><span class="p">.</span><span class="nn">ant</span><span class="p">:</span><span class="mi">25</span><span class="s s-Atom">:</span>
-<span class="s s-Atom">wsadmin</span> <span class="s s-Atom">task</span> <span class="s s-Atom">failed</span> <span class="s s-Atom">with</span> <span class="s s-Atom">return</span> <span class="nf">code</span> <span class="o">:-</span><span class="mi">1</span>
-</pre></div>
-
-
-<p>However it turns out (as per the link provided in the beggining of the post) that the issue lies in the shell script that calls the ant script. It seems that the script expects to be run with sh or bash, and breaks since in Ubuntu sh is usually symlinked to dash.</p>
-<p>The rather simple solutions to the problem:</p>
-<ol>
-<li>Link /bin/sh to bash</li>
-</ol>
-<div class="highlight"><pre><span></span>sudo unlink /bin/sh
-sudo ln -s /bin/bash /bin/sh
-</pre></div>
-
-
-<ol>
-<li>Reconfigure sh via dpkg</li>
-</ol>
-<div class="highlight"><pre><span></span>sudo dpkg-reconfigure dash
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+Installing Websphere (and other IBM server products) is already a pain in the ass by itself, but it turned …</p>
+                <a class="readmore" href="https://victal.eti.br/websphere-7-on-ubuntu-linux.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Questões perguntadas por alguém sobre HTTPS</title>
+        <link rel="stylesheet" href="https://victal.eti.br/theme/css/main.css" />
+        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Free Lunch Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://victal.eti.br/">Free Lunch <strong>"There is no such thing as this site"</strong></a></h1>
+                <nav><ul>
+                    <li class="active"><a href="https://victal.eti.br/category/https.html">https</a></li>
+                    <li><a href="https://victal.eti.br/category/java.html">java</a></li>
+                    <li><a href="https://victal.eti.br/category/tips.html">tips</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://victal.eti.br/questoes-perguntadas-por-alguem-sobre-https.html" rel="bookmark"
+           title="Permalink to Questões perguntadas por alguém sobre HTTPS">Questões perguntadas por alguém sobre HTTPS</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-09-27T00:00:00-03:00">
+                Published: sex 27 setembro 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/https.html">https</a>.</p>
+
+</footer><!-- /.post-info -->      <p>No primeiro texto falando sobre HTTPS publicado aqui há uns tempos, foi feita uma introdução ao funcionamento do protocolo HTTPS, principalmente sobre os comos e porquês teóricos de utilizá-lo sempre que possível - esse texto pode ser encontrado <a href="https://victal.eti.br/qustoes-perguntadas-por-ninguem-sobre-https.html">aqui</a>.</p>
+<p>Se no primeiro texto utilizamos questões hipotéticas como artifício literário para facilitar a leitura, neste o intuito é responder algumas questões reais que ficaram abertas no texto anterior e/ou foram feitas por ou para mim apõs a publicação anterior, antes de entrar em maiores detalhes/mudar de assunto.</p>
+<p>1 - SSL? TLS? SSL/TLS? O que é o quê entre os dois protocolos?</p>
+<p>Enquanto a definição de HTTPS (um protocolo em que uma camada de criptografia é adicionada em volta da comunicação via protocolo HTTP), SSL e TLS costumam causar mais confusão, principalmente por serem usados de forma intercambiável para definir "o protocolo utilizado para criptografar os dados numa conexão HTTPS".</p>
+<p>De forma estrita, <em>SSL</em> (Secure Sockets Layer), é o protocolo inicial desenvolvido pela Netscape para atuar como esta camada de criptografia em cima do protocolo HTTP. Este SSL 'estrito' é um protocolo já obsoleto, tendo sua última versão (3.0) definida em 1996 e devendo ser utilizado apenas quando for absolutamente necessário permitir o acesso de clientes que suportem apenas este protocolo.</p>
+<p>Em 1999, uma versão atualizada do protocolo SSL 3.0 foi proposta pela Internet Engineering Task Force. Para identificar que esta versão do protocolo e as subsequentes estariam sob desenvolvimento e tutela da IETF e não mais da Netscape, o protocolo em proposta foi renomeado para <em>TLS</em> (Transport Layer Security) 1.0.</p>
+<p>Por conta desta continuidade, é comum e inócuo se referir de forma intercambiável a SSL ou TLS (ou SSL/TLS) em discussões/textos em que não é necessário especificar a versão do protocolo utilizada. </p>
+<p>Para discussões em que a versão exata do protocolo é relevante, como definição de quais versões de protocolo suportar em um determinado servidor, ou quais protocolos estão vulneráveis a uma determinada vulnerabilidade, é imperativo explicitar o protocolo e a(s) versão(ões) em discussão.</p>
+<p>Por simplicidade e para deixar clara a obsolescência do protocolo SSL, será utilizado o nome TLS neste texto mesmo quando se tratar de uma situação em que ambos os protocolos seriam válidos.</p>
+<p>2 - Que subdomínios estão cobertos por um certificado 'wildcard'? Tenho um nome de domínio com N níveis de sub-(sub-sub-sub-sub-)subdomínios, consigo gerar um certificado único que funcione neste caso?</p>
+<p>Relembrando do texto anterior, certificados <em>wildcard</em> são válidos para todos os subdomínios de um determinado domínio. Por exemplo, um certificado <em>wildcard</em> para <strong>*.victal.eti.br</strong> é válido para qualquer subdominio.victal.eti.br.</p>
+<p>O 'asterisco' num certificado wildcard, porém, é valido apenas como <em>prefixo</em> de um domínio e substitui apenas <em>um nível</em> de subdomínios. Ou seja:
+ - Um certificado para <strong>*.example.org</strong> não é válido para o endereço sub1.sub2.example.org - é necessário um certificado valido especificamente para este domínio ou um wildcard para <strong>*.sub2.example.org</strong>
+ - Um "domínio" *.*.example.org não é válido em um certificado - é necessário que o certificado se refira a cada subdomínio intermediário (*.sub1.example.org, *.sub2.example.org, etc.) explicitamente
+ - Um certificado wildcard por si só <strong>NÃO</strong> é válido para a raiz do domínio, e.g. o certificado para *.example.org <em>nâo vale</em> para https://example.org (sem qualquer subdomínio). Nesse caso deve ser utilizado um certificado válido explicitamente para o domínio raiz e para os subdomínios, como no caso abaixo, do DuckDuckGo:</p>
+<p><img alt="Certificado para duckduckgo.com" src="static/cert_duckduckgo.png" title="Certificado para duckduckgo.com"></p>
+<p>3 - Quais as diferenças entre os tipos de validação de certificados existentes? Quando vale a pena o custo de obter um certificado com validação mais completa?</p>
+<p>4 - Meu host não permite utilizar um certificado HTTPS qualquer para meu site e as opções disponíveis ~custam uma fortuna~ estão além do meu orçamento? Que opções eu tenho?</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="http://github.com/victal">Github</a></li>
+                            <li><a href="http://twitter.com/g_victal">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
