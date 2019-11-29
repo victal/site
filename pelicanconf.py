@@ -3,8 +3,8 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'victal'
-SITENAME = u'Free Lunch'
-SITESUBTITLE = u'"There is no such thing as this site"'
+SITENAME = u'Indexed Column'
+SITESUBTITLE = u'"No wonder it\'s so slow to update"'
 SITEURL = ''
 
 PATH = 'content'
