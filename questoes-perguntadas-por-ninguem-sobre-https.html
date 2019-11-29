@@ -4,12 +4,12 @@
         <meta charset="utf-8" />
         <title>Questões perguntadas por ninguém sobre HTTPS</title>
         <link rel="stylesheet" href="https://victal.eti.br/theme/css/main.css" />
-        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Free Lunch Atom Feed" />
+        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Indexed Column Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://victal.eti.br/">Free Lunch <strong>"There is no such thing as this site"</strong></a></h1>
+                <h1><a href="https://victal.eti.br/">Indexed Column <strong>"No wonder it's so slow to update"</strong></a></h1>
                 <nav><ul>
                     <li class="active"><a href="https://victal.eti.br/category/https.html">https</a></li>
                     <li><a href="https://victal.eti.br/category/java.html">java</a></li>
@@ -85,11 +85,11 @@
 <ul>
 <li>Baixe a última versão do certbot-auto, um wrapper para o certbot que trata da instalação/atualização da ferramenta propriamente dita, copie-a para uma pasta que faça parte do <code>$PATH</code> (por conveniência), torne executável com <code>chmod</code> e execute-a sem argumentos para realizar o processo de instalação.</li>
 </ul>
-<div class="highlight"><pre><span></span>    <span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="p">.</span><span class="n">eff</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
-    <span class="n">sudo</span> <span class="n">mv</span> <span class="n">certbot</span><span class="o">-</span><span class="n">auto</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
-    <span class="n">sudo</span> <span class="n">chown</span> <span class="n">root</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
-    <span class="n">sudo</span> <span class="n">chmod</span> <span class="mi">0755</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="k">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
-    <span class="n">certbot</span><span class="o">-</span><span class="n">auto</span>
+<div class="highlight"><pre><span></span><span class="err">    wget https://dl.eff.org/certbot-auto</span>
+<span class="err">    sudo mv certbot-auto /usr/local/bin/certbot-auto</span>
+<span class="err">    sudo chown root /usr/local/bin/certbot-auto</span>
+<span class="err">    sudo chmod 0755 /usr/local/bin/certbot-auto</span>
+<span class="err">    certbot-auto</span>
 </pre></div>
 
 
@@ -124,7 +124,7 @@ Na imagem, os sufixos nos nomes dos arquivos ocorrem por estar re-gerando certif
 <p>Para os servidores Web de uso mais comum (Apache e Nginx), a aplicação dos trechos de configuração fornecidos por essa ferramenta pode ser realizada de forma suficientemente direta (aqui exemplificada com a configuração de um servidor Apache com configuração Intermediária:</p>
 <p>0 - caso os certificados não tenham sido gerados na mesma máquina em que o servidor web se encontra, copie-os para um diretório no servidor (via SSH, SFTP ou outro protocolo seguro desejado) e certifique-se que apenas o usuário do servidor web (e.g. www-data) tem acesso a este diretório. Como no caso do exemplo acima os certificados foram gerados na própria máquina do servidor, será utilizado o diretório <code>/etc/letsencrypt/live/victal.eti.br</code> nos exemplos:</p>
 <p>1 - Por via das dúvidas, faça um backup do arquivo de configuração atual do Apache (usualmente dentro de <code>sites-available</code> no diretório de configuração do Apache) via, por exemplo:</p>
-<div class="highlight"><pre><span></span><span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="mi">000</span><span class="o">-</span><span class="k">default</span><span class="p">.</span><span class="n">conf</span><span class="err">{</span><span class="p">,.</span><span class="n">backup</span><span class="err">}</span>
+<div class="highlight"><pre><span></span><span class="err">cp /etc/apache2/sites-available/000-default.conf{,.backup}</span>
 </pre></div>
 
 
@@ -135,12 +135,12 @@ Na imagem, os sufixos nos nomes dos arquivos ocorrem por estar re-gerando certif
 <p>4 - Substitua o conteúdo da configuração atual pela nova configuração com o trecho adicionado no passo anterior, trocando os valores das diretivas <code>SSLCertificateFile</code> e <code>SSLCertificateKeyFile</code> pelos caminhos para os arquivos <code>fullchain.pem</code> e <code>privkey.pem</code> do certificado gerado e salve o arquivo</p>
 <p><img alt="Configuração Apache 3" src="static/apache-3-overwrite.png" title="Configuração Apache 3"></p>
 <p>5 - No caso do apache, como pode ser visto no princípio do arquivo de configuração, é necessário habilitar alguns módulos, caso já não estejam habilitados, com:</p>
-<div class="highlight"><pre><span></span><span class="n">a2enmod</span> <span class="n">ssl</span> <span class="n">rewrite</span> <span class="n">headers</span>
+<div class="highlight"><pre><span></span><span class="err">a2enmod ssl rewrite headers</span>
 </pre></div>
 
 
 <p>6 - Recarregue o servidor apache para que as configurações tenham efeito:</p>
-<div class="highlight"><pre><span></span><span class="n">service</span> <span class="n">apache2</span> <span class="n">reload</span>
+<div class="highlight"><pre><span></span><span class="err">service apache2 reload</span>
 </pre></div>
 
 

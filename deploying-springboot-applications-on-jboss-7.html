@@ -4,12 +4,12 @@
         <meta charset="utf-8" />
         <title>Deploying Springboot applications on Jboss 7</title>
         <link rel="stylesheet" href="https://victal.eti.br/theme/css/main.css" />
-        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Free Lunch Atom Feed" />
+        <link href="https://victal.eti.br/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Indexed Column Atom Feed" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://victal.eti.br/">Free Lunch <strong>"There is no such thing as this site"</strong></a></h1>
+                <h1><a href="https://victal.eti.br/">Indexed Column <strong>"No wonder it's so slow to update"</strong></a></h1>
                 <nav><ul>
                     <li><a href="https://victal.eti.br/category/https.html">https</a></li>
                     <li class="active"><a href="https://victal.eti.br/category/java.html">java</a></li>
@@ -43,7 +43,7 @@
 </ol>
 <p>This does not work out of the box with Jboss 7, and it doesn't give any logs or errors save for the 404s when trying to access the application.</p>
 <p>As it turns out, the problem is that Jboss 7 doesn't work well with the servlet mapping of <code>/</code> provided by the default spring configuration. The servlet path must be changed to <code>/*</code> for it to work, which can be done by adding the line </p>
-<div class="highlight"><pre><span></span><span class="n">server</span><span class="p">.</span><span class="n">servlet</span><span class="o">-</span><span class="n">path</span><span class="o">=</span><span class="cm">/*</span>
+<div class="highlight"><pre><span></span><span class="err">server.servlet-path=/*</span>
 </pre></div>
 
 
