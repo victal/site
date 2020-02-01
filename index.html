@@ -9,17 +9,120 @@
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://victal.eti.br/">Indexed Column <strong>"No wonder it's so slow to update"</strong></a></h1>
+                <h1><a href="https://victal.eti.br/">Indexed Column<strong>"No wonder it's so slow to update"</strong></a></h1>
                 <nav><ul>
                     <li><a href="https://victal.eti.br/category/https.html">https</a></li>
                     <li><a href="https://victal.eti.br/category/java.html">java</a></li>
+                    <li><a href="https://victal.eti.br/category/misc.html">misc</a></li>
                     <li><a href="https://victal.eti.br/category/tips.html">tips</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://victal.eti.br/questoes-perguntadas-por-alguem-sobre-https.html">Questões perguntadas por alguém sobre HTTPS</a></h1>
+                    <h1 class="entry-title"><a href="https://victal.eti.br/customizing-an-existing-keyboard-layout-on-windows.html">Customizing an existing Keyboard Layout on Windows</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2020-01-31T00:00:00-03:00">
+                Published: sex 31 janeiro 2020
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://victal.eti.br/author/victal.html">victal</a>
+        </address>
+<p>In <a href="https://victal.eti.br/category/misc.html">misc</a>.</p>
+
+</footer><!-- /.post-info --><p>For one reason or another<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, I've started trying to learn Swedish in my spare time, as one does. 
+Although it is at times quite similar to English, the peculiarities of Swedish start to show up right at its alphabet - there are <strong>9 vowels</strong> in <em>Svenska</em>, as opposed to the five that english (or any latin-derived language) speakers are used to. </p>
+<p>Now, what does that have to do with Windows keyboard layouts?</p>
+<p>Well, it turns out that one of those 9 aforementioned vowels is <strong>å</strong> - a character that has no simple input on both keyboard layouts I use (US and Brazil ABNT2). And since I only needed two extra characters (for uppercase Å/lowercase å), I definitely couldn't be bothered with checking out whatever the common keyboard layout for swedish might be, even though it does not seem possible, from Windows configuration options alone, to customize a given keyboard layout to add a character or two as a given keypress combination.</p>
+<p>Thankfully, though, I stumbled on a tweet<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> that mentioned an actual Microsoft tool that lets one do just that!
+One can get the aptly-named Microsoft Keyboard Layout Creator (MSKLC for short from here on) from <a href="https://www.microsoft.com/en-us/download/confirmation.aspx?id=22339">https://www.microsoft.com/en-us/download/confirmation.aspx?id=22339</a></p>
+<p>After downloading the installer (MSKLC.exe) and installing the tool (open the installer, click on setup and then follow the usual Next -&gt; Next -&gt; Next -&gt; Finish installation ritual), one can find and open the Keyboard Layout Creator from the Start Menu, and then we can get started creating our customized Swenglish Keyboard Layout:</p>
+<h2>1 - Customizing the Layout</h2>
+<p>Upon starting the Layout Creator, it opens an empty layout to work with. Since we only want to change a couple keys, we can load an existing keyboard layout to speed things up, and go from there:</p>
+<p><img alt="Loading an existing layout" src="static/msklc/1_load_existing_keyboard_1.png" title="Menu for loading an existing layout"></p>
+<p>(An Keyboard editor it does not have keyboard shortcuts for every action? I want my money back)</p>
+<p><img alt="Selecting an existing layout to load" src="static/msklc/2_load_existing_keyboard_2.png" title="Selecting an existing layout to load"></p>
+<p>For this example, we'll be using the 'US' keyboard as the initial layout.</p>
+<p><img alt="Existing layout loaded" src="static/msklc/3_load_existing_keyboard_3.png" title="Existing layout loaded"></p>
+<p>Et voilà!</p>
+<hr>
+<p>Now, using this tool is quite straightforward: </p>
+<ul>
+<li>Use the toggles on the left side to show the keyboard state with Shift/Ctrl/AltGr pressed. For this example, we'll bind <strong>å</strong> to <strong>AltGr + a</strong></li>
+</ul>
+<p><img alt="Layout with selected shift state" src="static/msklc/4_layout_altgr.png" title="Layout with selected shift state"></p>
+<ul>
+<li>Click on the key to which you want to assign a given character.</li>
+</ul>
+<p><img alt="Selected key popup" src="static/msklc/5_selected_key_popup.png" title="Selected key popup"></p>
+<ul>
+<li>Copy the desired character to the textbox on the popup (from a text with the desired character on it, or using the ubiquitous <a href="https://en.wikipedia.org/wiki/Character_Map_(Windows)">Character Map</a>) and click OK.</li>
+</ul>
+<p><img alt="Saved new character" src="static/msklc/6_saved_character.png" title="Saved new character"></p>
+<ul>
+<li>All done!</li>
+</ul>
+<p>Adding Å as AltGr+Shift+a is just as simple - we just need to toggle both the AltGr and Shift states and remember to add the uppercase letter:</p>
+<p><img alt="Adding uppercase letter" src="static/msklc/7_adding_uppercase_letter.png" title="Adding uppercase letter"></p>
+<h2>2 - Naming, saving, and installing the layout</h2>
+<p>After customizing the keyboard layout to our hearts' contents, we'll need to save an installer in order to add it to a computer.</p>
+<p>To do so, simply choose the menu option <strong>Project -&gt; Build DLL and Setup Package</strong>.</p>
+<p><img alt="Build Package menu" src="static/msklc/8_build_dll_menu.png" title="Build Package menu"></p>
+<p>If you haven't already done so (via the <strong>Project -&gt; Properties</strong> menu), the tool will alert you to change name and name and description for the new layout. Click <em>Yes</em> on the popup to get to the Properties screen:</p>
+<p><img alt="Layout properties screen" src="static/msklc/9_properties_screen.png" title="Layout properties screen"></p>
+<p>The important fields here are <strong>Name</strong> and <strong>Description</strong>: </p>
+<p><strong>Name</strong> is a short name that will identify our layout within Windows, and as such may not have special characters or be too long.</p>
+<p><strong>Description</strong> is the name that shows up on the language switcher (see below) - since it shows only a small window you may want to describe your customization at the beginning of the field so that it's easier to identify your layout</p>
+<p><img alt="Language switcher example" src="static/msklc/10_language_switcher_initial.png" title="Language switcher example"></p>
+<p>After saving the layout's properties MSKLC will build an installer - by default, it will be located at C:\Users\USER\Documents[layout name]</p>
+<p><img alt="Built Layout installer" src="static/msklc/11_layout_built_files.png" title="Built layout installer"></p>
+<p>If you want to share the created layout between computers (say, in a corporate setting perhaps), just copy the contents of this folder and run the installer. </p>
+<p>To install the layout to the current machine, simply run the setup.exe executable and reboot the machine<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> to have it available.</p>
+<p><img alt="Windows language switcher" src="static/msklc/12_windows_language_switcher_final.png" title="Windows language switcher"></p>
+<p>Windows language switcher after installing the new layout</p>
+<h2>3 - Extra - Dead keys</h2>
+<p>Since Swedish only has one letter with an uncommon diacritic above it, we could get by simply mapping the pair of lowercase/uppercase letters to a modifier+key combination. If we had to add a diacritic that might affect multiple letters, MSKLC provides the option to create a <a href="https://en.wikipedia.org/wiki/Dead_key">Dead key</a> which is a letter used to attach a diacritic to a base letter (in the brazilian ABNT layouts, for example, <strong>´/`</strong>, <strong>~/^</strong> and <strong>¨</strong> are dead keys). 
+For those not used to the concept, creating a dead key for '°' means we'd be able to create å/Å by typing the combination for '°' and then the letter a/A.</p>
+<p>To add ° as a diacritic mapped by AltGr+e (which maps to the '°' symbol on a portuguese keyboard layout), for example:</p>
+<ol>
+<li>Load the keyboard layout and select the key to map in the same way as we've done before. Click 'All...' on the popup instead of 'OK' to bring up the full options for the key:</li>
+</ol>
+<p><img alt="Dead key start" src="static/msklc/13_dead_key_1_start.png" title="Dead key start"></p>
+<p>On the full options panel, toggle the 'Dead Key View' and then toggle 'Dead Key?' for the desired shift states (in our case, ctrl+alt+<key>, which amounts to AltGr+<key>) to enable further options.</p>
+<p><img alt="Full options popup" src="static/msklc/14_dead_key_2_full_options_start.png" title="Full options popup">
+Click on the '...' button that was just enable to open the dead key definition table.</p>
+<p>For each composite character we want to enable, we'll need to write the base character (in our case, 'a' or 'A') on the 'Base (code point) column' and the composite character (å or Å) on the 'Composite (code point)' column.</p>
+<p>After filling lines for both å and Å, we should have a table filled like this.</p>
+<p><img alt="Filled dead key table" src="static/msklc/15_filled_dead_key_table.png" title="Filled deadkey table"></p>
+<p>Click OK on the table popup, OK again on the previous key edition popup, and we're done! Now all we would need to do is to build the layout installer and install the keyboard layout as we did before.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>In no particular order, they include having fiinished my last package of <a href="">liquorice</a>, visiting friends who moved to Sweden, being curious about trying out surströmming, and being able to understand a larger part of the jokes on the <a href="">SSSS</a> comment section&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>I don't have the link to that particular tweet, but it's the right combination of Windows Management and random IT stuff to make me believe it was an answer in a <a href="https://twitter.com/SwiftOnSecurity">SwiftOnSecurity</a> thread, so go follow Tay if you haven't yet.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>It's a windows tool being used to install a windows feature, we'd <em>obviously</em> never be able to get to the end of the instructions without at least one reboot.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://victal.eti.br/questoes-perguntadas-por-alguem-sobre-https.html" rel="bookmark"
+                           title="Permalink to Questões perguntadas por alguém sobre HTTPS">Questões perguntadas por alguém sobre HTTPS</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-09-27T00:00:00-03:00">
                 Published: sex 27 setembro 2019
@@ -30,84 +133,11 @@
         </address>
 <p>In <a href="https://victal.eti.br/category/https.html">https</a>.</p>
 
-</footer><!-- /.post-info --><p>No primeiro texto falando sobre HTTPS publicado aqui há uns tempos, foi feita uma introdução ao funcionamento do protocolo HTTPS, principalmente sobre os comos e porquês teóricos de utilizá-lo sempre que possível - esse texto pode ser encontrado <a href="https://victal.eti.br/qustoes-perguntadas-por-ninguem-sobre-https.html">aqui</a>.</p>
-<p>Se no primeiro texto utilizamos questões hipotéticas como artifício literário para facilitar a leitura, neste o intuito é responder algumas questões reais que ficaram abertas no texto anterior e/ou foram feitas por ou para mim apõs a publicação anterior, antes de entrar em maiores detalhes/mudar de assunto.</p>
-<h2>1 - SSL? TLS? SSL/TLS? O que é o quê entre os dois protocolos?</h2>
-<p>Enquanto a definição de HTTPS (um protocolo em que uma camada de criptografia é adicionada em volta da comunicação via protocolo HTTP), SSL e TLS costumam causar mais confusão, principalmente por serem usados de forma intercambiável para definir "o protocolo utilizado para criptografar os dados numa conexão HTTPS".</p>
-<p>De forma estrita, <em>SSL</em> (Secure Sockets Layer), é o protocolo inicial desenvolvido pela Netscape para atuar como esta camada de criptografia em cima do protocolo HTTP. Este SSL 'estrito' é um protocolo já obsoleto, tendo sua última versão (3.0) definida em 1996 e devendo ser utilizado apenas quando for absolutamente necessário permitir o acesso de clientes que suportem apenas este protocolo.</p>
-<p>Em 1999, uma versão atualizada do protocolo SSL 3.0 foi proposta pela Internet Engineering Task Force. Para identificar que esta versão do protocolo e as subsequentes estariam sob desenvolvimento e tutela da IETF e não mais da Netscape, o protocolo em proposta foi renomeado para <em>TLS</em> (Transport Layer Security) 1.0.</p>
-<p>Por conta desta continuidade, é comum e inócuo se referir de forma intercambiável a SSL ou TLS (ou SSL/TLS) em discussões/textos em que não é necessário especificar a versão do protocolo utilizada. </p>
-<p>Para discussões em que a versão exata do protocolo é relevante, como definição de quais versões de protocolo suportar em um determinado servidor, ou quais protocolos estão vulneráveis a uma determinada vulnerabilidade, é imperativo explicitar o protocolo e a(s) versão(ões) em discussão.</p>
-<p>Por simplicidade e para deixar clara a obsolescência do protocolo SSL, será utilizado o nome TLS neste texto mesmo quando se tratar de uma situação em que ambos os protocolos seriam válidos.</p>
-<h2>2 - Que subdomínios estão cobertos por um certificado 'wildcard'? Tenho um nome de domínio com N níveis de sub-(sub-sub-sub-sub-)subdomínios, consigo gerar um certificado único que funcione neste caso?</h2>
-<p>Relembrando do texto anterior, certificados <em>wildcard</em> são válidos para todos os subdomínios de um determinado domínio. Por exemplo, um certificado <em>wildcard</em> para <strong>*.victal.eti.br</strong> é válido para qualquer <strong>subdominio.victal.eti.br</strong>.</p>
-<p>O 'asterisco' num certificado wildcard, porém, é valido apenas como <em>prefixo</em> de um domínio e substitui apenas <em>um nível</em> de subdomínios. Ou seja:
- - Um certificado para <strong>*.example.org</strong> NÃO é válido para o endereço sub1.sub2.example.org - é necessário um certificado válido especificamente para este domínio ou um wildcard para <strong>*.sub2.example.org</strong>
- - Um "domínio" *.*.example.org não é válido em um certificado - é necessário que o certificado se refira a cada subdomínio intermediário (*.sub1.example.org, *.sub2.example.org, etc.) explicitamente
- - Um certificado wildcard por si só <strong>NÃO</strong> é válido para a raiz do domínio, e.g. o certificado para *.example.org <em>nâo vale</em> para https://example.org (sem qualquer subdomínio). Nesse caso deve ser utilizado um certificado válido explicitamente para o domínio raiz e para os subdomínios, como no caso abaixo, do DuckDuckGo:</p>
-<p><img alt="Certificado para duckduckgo.com" src="static/cert_duckduckgo.png" title="Certificado para duckduckgo.com"></p>
-<h2>3 - Quais as diferenças entre os tipos de validação de certificados existentes? Quando vale a pena o custo de obter um certificado com validação mais completa?</h2>
-<p>Para uso em comunicação via HTTPS, Autoridades Certificadoras comumente fornecem certificados com um entre três diferentes níveis de validação. Embora todos ofereçam o mesmo tipo de segurança quanto à integridade e confidencialidade dos dados trafegados, alguns oferecem validações extras no que diz respeito à autenticidade do serviço disponibilizado, a saber:</p>
-<p>Domain Validation (DV) - Este é o tipo de validação mais comum, que consiste apenas em validar que o solicitante do certificado mantém algum tipo de controle sobre o nome DNS do domínio para o qual o certificado será gerado, exigindo por exemplo:
-  - a criação de uma entrada DNS do tipo TXT para o domínio 
-  - a disponibilização de um arquivo em um servidor Web acessível por esse nome</p>
-<p>Por conta do tipo de validação realizado, um certificado DV é capaz de autenticar apenas que corresponde ao nome de domínio que está sendo acessado.</p>
-<p>Organization Validation (OV) - Além do domínio para o qual o certificado é válido, um certificado OV é associado também a uma Organização (e.g. uma empresa ou órgão governamental), cujos dados são adicionados ao certificado e são portanto validados pela Autoridade Certificadora por meios "externos" à solicitação, por exemplo:
-  - Dados de cadastro da Organização no órgão governamental competente
-  - Dados de cadastro da Organização em uma base de dados de um órgão terceiro considerado confiável (e.g. Serviços de registro de empresas como a <a href="https://www.dnb.com/duns-number.html">Dun &amp; Breadstreet</a>)
-  - Solicitação de documentos recentes da Organização (e.g. contas ou documentos fornecidos por um banco ou órgão público) para comprovar os dados de nome e endereo da Organização</p>
-<p>Com um certificado deste tipo, embora um browser acessando o endereço correspondente não demonstre imediatamente que o certificado, e por tabela, o site, está associado a uma determinada organização, é possível verificar esta associação acessando os detalhes do certificado no browser. Por exemplo, para o site do <a href="https://www.bb.com.br">Banco do Brasil</a>:</p>
-<p><img alt="Acesso ao site do BB" src="static/https/2/bb_site.png" title="Acesso ao site do BB"></p>
-<p>Acessando o site, não há nenhuma diferença visível imediatamente.</p>
-<p><img alt="Certificado para www.bb.com.br" src="static/https/2/bb_cert.png" title="Certificado para www.bb.com.br"></p>
-<p>Consultando os detalhes do certificado podemos verificar que o mesmo está associado à organização "Banco do Brasil S.A."</p>
-<p>Para mais detalhes sobre quais validações a serem feitas na emissão de certificados DV e OV, pode-se consultar os <a href="https://cabforum.org/baseline-requirements-documents/">Baseline Requirements</a> do CA/Browser Forum - um consórcio formado por Autoridades Certificadoras e outras partes interessadas a fim de definir e divulgar práticas aceitas para a emissão de certificados TLS.</p>
-<p>Extended Validation (EV) - Assim como os certificados OV, estes também são associados a uma Organização, porém para emissão destes a Autoridade Certificadora deve realizar uma série de validações muito mais estrita tanto nos dados solicitados quanto na forma de verificação, incluindo:
- - Verificação de que a organização está registrada e operando (por um determinado período mínimo de tempo) sob o nome a ser adicionado ao certificado
- - Verificação da identidade de um indivíduo responsável pela organização perante a AC
- - Verificação de uma forma de contato <em>out of band</em> com a organização.</p>
-<p>A existência de uma validação mais estrita costuma fazer com que certificados EV sejam significativamente mais caros e mais demorados de se obter. A contrapartida porém é que diferentemente dos certificados DV e OV, um certificado EV pode ser considerado como prova de que o serviço a que se tem acesso está de fato associado a uma determinada organização.
-y
-Por este motivo, é comum que em versões mais antigas de browsers sites com certificados EV tenham o nome da organização a que pertencem apresentado ao lado da URL (como abaixo, no site da Symantec acessado pelo Firefox ESR)</p>
-<p><img alt="Site com certificado EV no Firefox ESR" src="static/https/2/symantec_site.png" title="Site com certificado EV"></p>
-<h2>3.5 - OK, entendi o que significam os diferentes tipos de certificados. Mas qual eu devo usar no meu site?</h2>
-<p>Apesar da longa descrição acima, no frigir dos ovos atualmente a sugestão para qualquer novo serviço é simplesmente <strong>utilizar um certificado DV</strong>, utilizando uma AC que forneça certificados gratuitos como a Let's Encrypt se estiver disponível para seu caso de uso, e, preferencialmente, de forma que seja possível automatizar a renovação dos certificados. Como descrito anteriormente, para fins de integridade e confidencialidade dos dados trafegados, o tipo de validação do certificado utilizado é indiferente.</p>
-<p>Quanto às garantias de autenticidade para os diferentes tipos de validação, algumas questões fazem com que, no mínimo, os pontos positivos dos certificados OV ou EV usualmente não compensem os custos:</p>
-<ul>
-<li>Os indicadores visuais de certificados EV (como o mostrado na seção anterior) estão sendo sistematicamente removidos dos principais browsers em termos de fatia de mercado (Chrome, Firefox e Safari por exemplo) após pesquisas A/B indicarem que a presença ou ausência destes não leva a diferenças no comportamento por parte dos usuários.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup></li>
-<li>Mesmo em browsers em que o indicador visual ainda está presente, como o conteúdo do mesmo é controlado por quem solicita o certificado, é relativamente simples gerar certificados cujo nome colida com outra entidade para fins de <em>phishing</em> e <em>spoofing</em>, bastando fazê-lo em uma jurisdição diferente da organização alvo do <em>spoof</em>. <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup></li>
-<li>Devido às restrições de validação, não é possível gerar certificados <em>wildcard</em> com validação EV. Certificados para múltiplos subdomínios precisam listar explicitamente todos os domínios desejados (o que impede seu uso para alguns casos de uso, como subdomínios definidos por usuários) e normalmente têm um custo muito mais elevado que certificados para um único domínio.</li>
-<li>O custo de um certificado EV é elevado, tanto em relação ao valor monetário (na escala de centenas de dólares para um certificado com validade de no máximo dois anos), quanto na burocracia para obtenção e renovação do certificado, que exige que o processo de renovação seja planejado antecipadamente e impede sua automatização completa.</li>
-</ul>
-<p>Assim, recomenda-se a obtenção de certificados EV apenas para casos de uso que obriguem sua utilização - como para assinatura de arquivos executáveis (algo completamente não relacionado a HTTPS, mas que também depende de certificados TLS) ou caso algum órgão regulador exija o uso de certificados OV/EV para sites de determinadas organizações (embora deva salientar que não conheça casos concretos do gênero) - para todos os outros casos, <strong>basta um certificado DV</strong>, idealmente com um renovação automática.</p>
-<h2>4 - Aonde consigo mais informações sobre esses assuntos?</h2>
-<p>Além dos links ao longo do texto, as páginas abaixo oferecem mais conteúdo relevante e aprofundado sobre o funcionamento de certificados TLS, as diferenças entre cada tipo de certificado e outros assuntos referentes ao uso/implementação de HTTPS. Infelizmente, a maioria está em inglês:</p>
-<ul>
-<li><a href="https://cabforum.org">CA/Browser Forum</a></li>
-<li><a href="https://www.cloudflare.com/learning/ssl/what-is-https/">Cloudflare Learning</a></li>
-<li><a href="https://www.bleepingcomputer.com/news/security/extended-validation-ev-certificates-abused-to-create-insanely-believable-phishing-sites/">Phishing utilizando Certificados EV</a></li>
-<li><a href="https://www.troyhunt.com/extended-validation-certificates-are-dead/">Extended Validation Certificates are Dead</a></li>
-<li><a href="https://www.troyhunt.com/extended-validation-certificates-are-really-really-dead/">Extended Validation Certificates are (Really, Really) Dead</a></li>
-</ul>
-<div class="footnote">
-<hr>
-<ol>
-<li id="fn:1">
-<p><a href="https://groups.google.com/a/chromium.org/forum/m/#!msg/security-dev/h1bTcoTpfeI/jUTk1z7VAAAJ">Link</a> para o aviso da remoção de indicador de certificado EV da UI do google chrome&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p><a href="https://groups.google.com/forum/m/?fromgroups&amp;hl=en#!topic/firefox-dev/6wAg_PpnlY4">Link</a> para o aviso da remoção de indicador de certificado EV da UI do Firefox&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>Por exemplo, o caso de spoofing do Stripe descrito em "<a href="https://arstechnica.com/information-technology/2017/12/nope-this-isnt-the-https-validated-stripe-website-you-think-it-is/">Nope, this isn’t the HTTPS-validated Stripe website you think it is</a>"&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-</ol>
-</div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+</footer><!-- /.post-info -->                <p>No primeiro texto falando sobre HTTPS publicado aqui há uns tempos, foi feita uma introdução ao funcionamento do protocolo HTTPS, principalmente sobre os comos e porquês teóricos de utilizá-lo sempre que possível - esse texto pode ser encontrado <a href="https://victal.eti.br/qustoes-perguntadas-por-ninguem-sobre-https.html">aqui</a>.</p>
+<p>Se no primeiro texto utilizamos questões hipotéticas como artifício literário para facilitar …</p>
+                <a class="readmore" href="https://victal.eti.br/questoes-perguntadas-por-alguem-sobre-https.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
